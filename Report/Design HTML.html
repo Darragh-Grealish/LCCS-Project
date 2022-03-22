@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="StyleSheet LCCS Project.css">
+    <title>Design</title>
+    <h1><center>Design</center></h1>
+</head>
+<body>
+
+<div id="header"> <!-- Header Division -->
+    <div id="nav"> 
+        <p id="text" > <!-- The id="text" allows the function to change the text size of the text contained within -->
+        <center>
+        <!-- When button is clicked, corresponding function is called upon -->
+        <button onclick='regular()'><h7>Regular</h7></button><!--Regular and Large Text-->
+        &nbsp;&nbsp;&nbsp; <button onclick='large()'><h7>Large</h7></button>
+        <!-- Below are hyperlinks linking each web page to one another -->
+        &nbsp;&nbsp;&nbsp; <a href="Investigation and Plan HTML.html">Investigation and Plan</a>
+        &nbsp;&nbsp;&nbsp; <a href="Design HTML.html">Design</a>
+        &nbsp;&nbsp;&nbsp; <a href="Implementation and Testing HTML.html">Implementation and Testing</a>
+        &nbsp;&nbsp;&nbsp; <a href="Evaluation HTML.html">Evaluation</a>
+        &nbsp;&nbsp;&nbsp; <a href="Word Count HTML.html">Word Count</a>
+        &nbsp;&nbsp;&nbsp; <a href="Reference HTML.html">References</a>
+        </center>
+        </p>
+    </div>
+</div>
+
+
+<div id="content">
+    <!--Outline of project-------------------------------------------------------------------------------------->
+    <div id="feature2">
+        <h3>Outline of project</h3>
+        <p> This system aims to protect homes by prompting owners to close their doors thus reducing home insurance. </p>
+        <p> The design includes a Micro:bit which when triggered by timed events reads in data, turning on/off LEDs whether the door is opened/closed. Data is sent to Python where it is cleaned, sorted and stored in Firebase. The company website displays this data for the homeowners.  It provides information on Smart Homes and a validation checked email subscription. </p>  
+        <p>In reality, the timed events create data at one transaction per minute. This collects a reasonable amount of information, whilst being cost-effective for a company, as it costs money to store data. </p>
+        <p>For the project, my system would create one transaction every three seconds because:</p>
+
+        <ul>
+            <li>I want to see the data flowing through the system</li>
+            <li>It’s the fastest the micro:bit can transfer data without error</li>
+            <li>I don’t want to fill up the table with too much data</li>
+        </ul>
+    </div> 
+
+    <!--System Requirements-------------------------------------------------------------------------------------->
+    <div id="feature2">
+        <h3>System Requirements</h3>
+        <p><u>Software</u></p>
+        <ul>
+            <li>MakeCode editor for writing code for the micro:bit</li>
+            <li>Python to clean and send data</li>
+            <li>Firebase to store data</li>
+            <li>HTML, CSS and JavaScript to create a company website and graph data</li>
+        </ul>
+        <p><u>Hardware</u></p>
+        <p>Parts list: micro:bit; micro:bit IoT kit; OLED Display; temperature, dust, and flame sensors; two LEDs; battery pack; USB cables.</p>
+        <p><u>Reasoning:</u></p>
+        <ul>
+            <li>Python as it is easy to use and is a powerful language for cleaning data</li>
+            <li>Firebase is cost-effective, cloud-based, real-time database</li>
+            <li>Micro:bit it’s easy to learn and use allowing me to focus on other modules, including more advanced features like firebase. Although devices like the raspberry-pi are more powerful and internet enabled.</li>
+        </ul>
+    </div>
+
+    <!--Plan and approach (Agile/Modular)-------------------------------------------------------------------------------------->
+    <div id="feature2">
+        <h3>Plan and Approach (Agile/Modular)</h3>
+        <p>I used an <u>agile plan</u> for my project with iteration used upon problems. </p>
+        <p>A <u>modular approach</u> was used to decompose the project into 4 independent modules along the data plane (see architecture diagram): </p>
+        <ul>
+            <li>embedded system capturing data</li>
+            <li>python program and database</li>
+            <li>website receiving and graphing data</li>
+            <li>website displaying information and storing emails</li>
+        </ul>
+        <p>I addressed each module one at a time. I decomposed each module into a set of smaller tasks. I took an agile approach to completing the tasks because this allowed me to iterate on the designs and be more flexible.</p>
+    </div>
+    
+    <!--How it meets the brief-------------------------------------------------------------------------------------->
+    <div id="feature2">
+        <h3>How it meets the brief</h3>
+        <ul>
+            <li>I created a home automation embedded system with timed and triggered events capturing data to be sorted, stored and graphed (see Architecture Diagram).</li>
+            <li>I then created a website with a home page, product page and five others, containing a user-friendly navigation system, a clean, crisp, consistent design with well-formatted, informative and concise information (see Webpage Wireframe).</li>
+            <li>Increasing/decreasing the navigation bar size has improved user accessibility.</li>
+            <li>An email subscription and contact form capture data, with implemented validation checks and GDPR compliance (see Architecture Diagram). </li>
+            <li>The website was created using a combination of headings, paragraphs, lists, tables, links, images, videos, text areas, buttons, drop-down lists, calendars and similar. </li>
+            <li>Data collected will be relevant, used for its intended purpose, securely stored in firebase and won’t be passed on as per GDPR.</li>
+        </ul>
+    </div>
+    
+    <!--System Architure----------------------------------------------------------------------------------------->
+    <div id="feature2">
+        <h3>System Architecture/Data flow Diagram</h3>
+        <p><img align="right" height="650px" src="images/Data Flow Diagram.png">
+        Step 1: Every 3 seconds the Micro:bit Embedded System collects raw data from the sensors. It sends this data to Python via serial port.
+        <br><br>Step 2: The Python programme receives, cleans and sorts the data before sending it in processed form to Firebase to be stored. 
+        <br><br>Step 3: The website graphs the stored data from the ‘monitorDevice’ section.
+        <br><br>Step 4: The website captures data and stores it in the ‘emailList’ section. 
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+    </div>
+
+    <!--Website Wireframe-->
+    <div id="feature2">
+        <h3>Website Wireframe</h3>
+        <p><img align="right" src="images/WireFrame PNG.png">
+            This website wireframe illustrates my webpages design. It creates a user-friendly interface for each page of the website allowing for easy navigation and a clean, crisp and well formatted display of the information. 
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+    </div>
+</div>
+
+</body>    
+</html>
+
+
+<!------------------------------------------SCRIPT-------------------------------------------------------------------------->
+
+<script src="LCCS JS Functions.js"></script> <!-- Linking the External JavaScript Page to this Page -->

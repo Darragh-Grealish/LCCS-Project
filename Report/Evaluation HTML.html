@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="StyleSheet LCCS Project.css">
+    <title>Evaluation</title>
+    <h1><center>Evaluation</center></h1>
+</head>
+<body>
+
+<div id="header"> <!-- Header Division -->
+    <div id="nav"> 
+        <p id="text" > <!-- The id="text" allows the function to change the text size of the text contained within -->
+        <center>
+        <!-- When button is clicked, corresponding function is called upon -->
+        <button onclick='regular()'><h7>Regular</h7></button><!--Regular and Large Text-->
+        &nbsp;&nbsp;&nbsp; <button onclick='large()'><h7>Large</h7></button>
+        <!-- Below are hyperlinks linking each web page to one another -->
+        &nbsp;&nbsp;&nbsp; <a href="Investigation and Plan HTML.html">Investigation and Plan</a>
+        &nbsp;&nbsp;&nbsp; <a href="Design HTML.html">Design</a>
+        &nbsp;&nbsp;&nbsp; <a href="Implementation and Testing HTML.html">Implementation and Testing</a>
+        &nbsp;&nbsp;&nbsp; <a href="Evaluation HTML.html">Evaluation</a>
+        &nbsp;&nbsp;&nbsp; <a href="Word Count HTML.html">Word Count</a>
+        &nbsp;&nbsp;&nbsp; <a href="Reference HTML.html">References</a>
+        </center>
+        </p>
+    </div>
+</div>
+
+
+<div id="content">
+    <!--Outline of project-------------------------------------------------------------------------------------->
+    <div id="feature2">
+        <h3>Evaluation of project</h3>
+        <p>For this project, I endeavoured to create a smart home device to improve home safety and provide users with real-time metrics on their home. I believe this system accomplished this goal: it can measure temperature, dust, magnetic strength and presence of a flame; display data on a dashboard; the website is full of useful information.</p>
+        <p>I’m happy with the software aspect of this project, especially the data processing and storage system. It efficiently processes and stores data that can be served to the user via the graph on the website.</p>
+        <p>The hardware fulfilled the goal of the project. It was quite easy to setup the micro:bit and the sensors were easy to use. But there is scope for improvement. For instance the Mirco:bit is reliant on a computer to run the Python program to process the data. </p>
+        <p>If I was to work on this project again I would make the following amendments:</p>
+        <ul>
+            <li>Use a Wi-Fi module to connect the embedded system wirelessly to the computer. A wireless connection is similar to what is used in the existing smart home products available on the market.</li>
+            <li>I used the embedded system micro:bit as it is relatively easy to learn how to use it. However, I would like to experiment further with using Raspberry-Pi. This would allow me to run my Python script locally instead of on my computer, thus removing the need for a computer and a wireless connection. The Raspberry-Pi would clean, organise and upload the data to Firebase, which would reduce any delays in data transfer.</li>
+        </ul>
+
+        
+
+
+
+    </div> 
+
+   
+</div>
+</body>    
+</html>
+
+
+<!------------------------------------------SCRIPT-------------------------------------------------------------------------->
+
+<script src="LCCS JS Functions.js"></script> <!-- Linking the External JavaScript Page to this Page -->
