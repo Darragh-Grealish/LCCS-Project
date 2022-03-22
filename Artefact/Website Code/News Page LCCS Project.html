@@ -1,0 +1,106 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="StyleSheet LCCS Project.css">
+    <title>News Page</title>
+    <meta data="">
+    <h1><center>News Page</center></h1>
+</head>
+<body> 
+    
+<div id="header"> <!-- Header Division -->
+    <div id="nav"> <!-- The id="nav" allows the function to change the text size of the text contained within -->
+        <p><center>
+        <!-- When button is clicked, corresponding function is called upon -->
+        <button onclick='regular()'><h7>Regular</h7></button><!--Regular and Large Text-->
+        &nbsp;&nbsp;&nbsp; <button onclick='large()'><h7>Large</h7></button>
+        <!-- Below are hyperlinks linking each web page to one another -->
+        &nbsp;&nbsp;&nbsp; <a href="Home Page LCCS Project.html">Home Page</a>
+        &nbsp;&nbsp;&nbsp; <a href="About Us LCCS Project.html">About Us</a>
+        &nbsp;&nbsp;&nbsp; <a href="ServicesProducts LCCS.html">Services/Products</a>
+        &nbsp;&nbsp;&nbsp; <a href="Monitor Your Device Page LCCS Practice.html">Monitor Your Device</a>
+        &nbsp;&nbsp;&nbsp; <a href="News Page LCCS Project.html">News Page</a>
+        &nbsp;&nbsp;&nbsp; <a href="Contact Page LCCS Project.html">Contact Us</a>
+        &nbsp;&nbsp;&nbsp; <a href="Privacy Policy LCCS Project.html">Privacy Policy Page</a>
+        </center></p>
+    </div>
+</div>
+<div id="content">
+    
+</div>
+
+<div id="intro">
+    <center><h4><u>Sign up</u> to keep up the latest information and News Bulletin's.</h4>
+    <input id="email" type="text" placeholder="Email Address">
+    <input id="name" type="text" placeholder="Name">
+    <!--<button type="button" onclick="writeUserData(name, email)">Enter E-mail Address</button></center>-->
+    <button id="subscription">Enter</button>
+</div>
+
+<div id="records">
+    
+</div>
+
+<div id="footer"> <!--Footer of Page Containing CopyRight-->
+    <center><p>&copy; Copyright 2022</p></center>
+</div>
+
+</body>
+</html>
+
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+    import { getDatabase, ref, set, push, child, get } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+         
+        // Firebase Credentials go here
+        
+        };
+    // Initialize Firebase -------------------------------
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const dbRef = ref(db);
+
+
+    //---------------------------------E-Mail Subscription------------------------------------------------------------------ 
+        
+
+    //function writeUserData(name, email) {  
+    document.getElementById('subscription').addEventListener('click', function writeUserData(name, email){
+            var name = document.getElementById("name").value
+            var email = document.getElementById('email').value      
+            var valid = email.length>=6 && email.includes('@') && email.includes('.');
+
+            if (valid == false){
+                alert('E-Mail is invalid, Please try again');
+            } 
+            else{
+                alert('Subscription Complete');
+                push(ref(db, 'emailList/'), {
+                name: name,
+                email: email
+                });
+            }
+
+            
+    })
+
+
+</script>
+
+<!------------------------------------------SCRIPT-------------------------------------------------------------------------->
+
+<script src="LCCS JS Functions.js"></script> <!-- Linking the External JavaScript Page to this Page -->
+
+<script>
+
+</script>
+

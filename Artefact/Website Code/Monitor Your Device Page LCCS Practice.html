@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="StyleSheet LCCS Project.css">
+    <title>Monitor your Device</title>
+    <meta data="">
+    <!--<meta http-equiv="refresh" content="5">--> <!-- https://www.youtube.com/watch?v=FoqPpCXgFHc -->
+    <h1><center>Monitor your Device</center></h1>
+</head>
+<body>
+
+<div id="header"> <!-- Header Division -->
+    <div id="nav"> <!-- The id="nav" allows the function to change the text size of the text contained within -->
+        <p><center>
+        <!-- When button is clicked, corresponding function is called upon -->
+        <button onclick='regular()'><h7>Regular</h7></button><!--Regular and Large Text-->
+        &nbsp;&nbsp;&nbsp; <button onclick='large()'><h7>Large</h7></button>
+        <!-- Below are hyperlinks linking each web page to one another -->
+        &nbsp;&nbsp;&nbsp; <a href="Home Page LCCS Project.html">Home Page</a>
+        &nbsp;&nbsp;&nbsp; <a href="About Us LCCS Project.html">About Us</a>
+        &nbsp;&nbsp;&nbsp; <a href="ServicesProducts LCCS.html">Services/Products</a>
+        &nbsp;&nbsp;&nbsp; <a href="Monitor Your Device Page LCCS Practice.html">Monitor Your Device</a>
+        &nbsp;&nbsp;&nbsp; <a href="News Page LCCS Project.html">News Page</a>
+        &nbsp;&nbsp;&nbsp; <a href="Contact Page LCCS Project.html">Contact Us</a>
+        &nbsp;&nbsp;&nbsp; <a href="Privacy Policy LCCS Project.html">Privacy Policy Page</a>
+        </center></p>
+    </div>
+</div>
+
+<hr>
+<div id="graphFlameHTML" style="width: 100%; height: 300px;">
+</div>
+<hr><hr>
+<div id="graphTemperatureHTML" style="width: 100%;">
+</div>
+<hr><hr>
+<div id="graphDoorHTML" style="width: 100%; height: 300px;">
+</div>
+<hr><hr>
+<div id="graphDustHTML" style="width: 100%">
+</div>
+<hr>
+
+<div id="footer"> <!--Footer of Page Containing CopyRight-->
+    <center><p>&copy; Copyright 2022</p></center>
+</div>    
+</body>
+</html>
+
+<!------------------------------------------SCRIPT-------------------------------------------------------------------------->
+
+<script src="LCCS JS Functions.js"></script> <!--Linking the External JavaScript Page to this Page-->
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase.js"></script><!--Importing Firebase-->
+<script src=https://cdn.plot.ly/plotly-latest.min.js></script>              <!--Importing Plotly---->
+<script>
+  // Setting up connection between Website and Firebase Database
+  const firebaseConfig = {
+    
+    // Firebase Credentials go here
+
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);  
+</script>
+
+<script>
+  var temperaturesList = [];  // Empty lists 
+  var doorList = [];          // for data 
+  var flameList = [];         // from Firebase
+  var dustList = [];
+  var timeList = [];
+  var myDataTemp = firebase.database().ref("/monitorDevice/") // Retrieving data from firebase
+  myDataTemp.on("child_added", updateGraphs);                 // Waiting for another node to be added
+
+//----------------Processing Data for Graphing----------------------------------------------------------------------------
+function updateGraphs(data){        // Passing new Data throught this function
+    var eachDataPoint = data.val(); // Picking out each piece of data        
+
+    var time = eachDataPoint.currentTime;
+    timeList.push(time);
+    while (timeList.length > 15) {
+        timeList.shift();
+    }
+    console.log(timeList);
+
+    // ------------Getting flame ready to Graph------------------------
+    var flame = parseInt(eachDataPoint.flameDetection); // Retrieving data from flameDetection in database
+    flameList.push(flame);                              // Pushing Data into list
+    while (flameList.length > 15) {                     // When the (list length>20)
+        flameList.shift();                              //    Older data is removed
+    }
+    graphFlameStatus(flameList, timeList);                        // List is sent to be graphed 
+
+    // ------------Getting temperature ready to Graph------------------------
+    var temperature = parseInt(eachDataPoint.roomTemperature); // Retrieving data from roomTemperature in database
+    temperaturesList.push(temperature);                        // Pushing Data into list
+    while (temperaturesList.length > 15) {                     // When the (list length>20)
+        temperaturesList.shift();                              //    Older data is removed
+    }
+    graphTemperatures(temperaturesList, timeList);                       // List is sent to be graphed 
+
+    // ------------Getting Door Status ready to present------------------------
+    var door = parseInt(eachDataPoint.doorStatus); // Retrieving data from doorStatus in database
+    doorList.push(door);                           // Pushing Data into list
+    while (doorList.length > 15) {                 // When the (list length>20)
+        doorList.shift();                          //    Older data is removed
+    }
+    graphDoorStatus(doorList, timeList);                     // List is sent to be graphed 
+
+    // ------------Getting Dust Levels ready to present------------------------
+    var dust = parseInt(eachDataPoint.dustLevel); // Retrieving data from dustLevel in database
+    dustList.push(dust);                          // Pushing Data into list
+    while (dustList.length > 15) {                // When the (list length>20)
+        dustList.shift();                         //    Older data is removed
+    }
+    graphDustLevel(dustList, timeList);                     // List is sent to be graphed 
+}
+//------------------------------Graphing------------------------------------------------------------------
+//------------------------------Flame Status--------------------------------------------------------------
+function graphFlameStatus(flames, time){
+    // data
+    var flameData = [{
+        y: flames,
+        x: time,
+        mode: 'lines+markers',
+        name: "Flame Status"
+    }];
+    // layout
+    var layoutFlame = {
+        title: 'Flame Status    0=Safe  1=Fire',
+        xaxis: { title: 'Time'},
+        yaxis: { title: 'Flame (0 or 1)'}
+    };
+    // draw
+    Plotly.newPlot("graphFlameHTML",flameData,layoutFlame)
+}
+// ----------------------------Room Temperature-----------------------------------------------------
+function graphTemperatures(temperatures, time){
+    // data
+    var graphTemperatureData = [{
+        y: temperatures,
+        x: time,
+        mode: 'lines+markers',
+        name: "Room Temperatures"
+    }];
+    // layout
+    var layoutTemperature = {
+        title: 'Room Temperature',
+        xaxis: { title: 'Time'},
+        yaxis: { title: 'Temperature °C'}
+    };
+    // draw
+    Plotly.newPlot("graphTemperatureHTML",graphTemperatureData,layoutTemperature)
+}
+// ---------------------------Door Status-----------------------------------------------------------
+function graphDoorStatus(doors, time){
+    // data
+    var graphDoorData = [{
+        y: doors,
+        x: time,
+        mode: 'lines+markers',
+        name: "Door Open/Close"
+    }];
+    // layout
+    var layoutDoor = {
+        title: 'Door Status    0=Open  1=Closed',
+        xaxis: { title: 'Time'},
+        yaxis: { title: 'Door'}
+    };
+    // draw
+    Plotly.newPlot("graphDoorHTML",graphDoorData,layoutDoor)
+}
+// ---------------------------Dust Level-----------------------------------------------------------
+function graphDustLevel(dusts, time){
+    // data
+    var graphDustData = [{
+        y: dusts,
+        x: time,
+        mode: 'lines+markers',
+        name: "Dust Level"
+    }];
+    // layout
+    var layoutDust = {
+        title: 'Dust Level',
+        xaxis: { title: 'Time'},
+        yaxis: { title: 'Dust (ug/m3)'}
+    };
+    // draw
+    Plotly.newPlot("graphDustHTML",graphDustData,layoutDust)
+}
+</script>

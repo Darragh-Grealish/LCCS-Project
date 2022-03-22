@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="StyleSheet LCCS Project.css">
+    <title>Contact Us</title>
+    <meta data="">
+    <h1><center>Contact Us</center></h1>
+</head>
+<body> 
+<div id="header"> <!-- Header Division -->
+    <div id="nav"> <!-- The id="nav" allows the function to change the text size of the text contained within -->
+        <p><center>
+        <!-- When button is clicked, corresponding function is called upon -->
+        <button onclick='regular()'><h7>Regular</h7></button><!--Regular and Large Text-->
+        &nbsp;&nbsp;&nbsp; <button onclick='large()'><h7>Large</h7></button>
+        <!-- Below are hyperlinks linking each web page to one another -->
+        &nbsp;&nbsp;&nbsp; <a href="Home Page LCCS Project.html">Home Page</a>
+        &nbsp;&nbsp;&nbsp; <a href="About Us LCCS Project.html">About Us</a>
+        &nbsp;&nbsp;&nbsp; <a href="ServicesProducts LCCS.html">Services/Products</a>
+        &nbsp;&nbsp;&nbsp; <a href="Monitor Your Device Page LCCS Practice.html">Monitor Your Device</a>
+        &nbsp;&nbsp;&nbsp; <a href="News Page LCCS Project.html">News Page</a>
+        &nbsp;&nbsp;&nbsp; <a href="Contact Page LCCS Project.html">Contact Us</a>
+        &nbsp;&nbsp;&nbsp; <a href="Privacy Policy LCCS Project.html">Privacy Policy Page</a>
+        </center></p>
+    </div>
+</div>
+<div id="intro">
+    <center><h3>If you have any queries, feel free to get in contact with us.</h3></center> 
+</div>
+</br>
+<div id="content">
+    <div class="article column1"><center> 
+        <br/><img width="95%" src="https://abclive1.s3.amazonaws.com/6dc6a0a0-b677-4113-a3bf-9f2735a555a9/widgetgraphic/Get%20In%20Touch%20Banner-min.jpg">
+    </center></div><!--Adding an image using img and declaring height-->
+    <!--Using src=""(source/location)-->
+
+    <div class="article column2"><center>
+        <h4>To get in Contact with us.</h4><br/>
+        <input type="text" id="firstname" placeholder="First Name"><br/><br/> <!--Entering-->
+        <input type="text" id="surname" placeholder="Surname"><br/><br/>      <!--Name-->
+        <select id="qtype">                                    <!--Query Type-->
+            <option value="0">Select Query Type</option>
+            <option value="1">Product Issues</option>
+            <option value="2">More Information on our Products</option> 
+            <option value="3">General Questions</option>
+            <option value="4">Porduct has not arrived</option>
+        </select><br/><br/>
+        <input id="email" placeholder="Email Address"><br/>    <!-- E-Mail -->
+        <p>Today's Date <input id="date" type="date"></p>      <!--Calender-->
+        <p>Enter Query Details</p><textarea id="details"></textarea><br/>   <!--Textarea-->
+        <button onclick="submit()">Submit</button>             <!--Button to Activate Function-->
+       </center></div>
+
+    <div class="article column3"><center>
+        <br/><img width="95%" src="https://pouchpass.com/wp-content/uploads/2020/11/contact-us.png">
+    </center></div>
+</div>
+<!-----------------------------------------TABLE--------------------------------------->
+<table border="1px" style="background-color: lightgrey;">
+    <!--Creating a Table, Border 1 pixel wide, table colour lightgrey-->
+    <tr><!--1st Table Row (horizontal)-->
+        <th>Phone Number</th>
+        <th>+353 87 123 4567</th>
+        <th>+353 91 123 456</th>
+        <th><img height="100" src="https://t4.ftcdn.net/jpg/04/63/63/59/360_F_463635929_H4y7oelFy8GVclf5XGKYe6N9OEi0Fjyn.jpg"></th>
+    </tr>
+    <tr><!--2nd Table row (hotrizontal)-->
+        <th>Email</th>
+        <th>&emsp; googleEmail@gmail.com &emsp;</th>
+        <th>&emsp; helpInformation@gmail.com &emsp;</th>
+        <th><img height="100" src="https://media.emailonacid.com/wp-content/uploads/2018/04/GmailApp.jpg"></th>
+    </tr>
+    <tr>
+        <th>Fax</th>
+        <th>+353 91 123 456</th>
+        <th>- - - - -</th>
+        <th><img height="100" src="https://static.vecteezy.com/system/resources/thumbnails/000/568/282/small/vector60-1592-01.jpg"></th>
+    </tr>
+</table>
+
+<div id="footer"> <!--Footer of Page Containing CopyRight-->
+    <center><p>&copy; Copyright 2022</p></center>
+</div>
+
+</body>
+</html>
+
+<!------------------------------------------SCRIPT-------------------------------------------------------------------------->
+
+<script src="LCCS JS Functions.js"></script> <!-- Linking the External JavaScript Page to this Page -->
+<script>
+//---------------------------------Query Form-------------------------------------------------------------------
+    function submit(){   
+// -----------------------------Getting Values------------------------------------------
+        var f = document.getElementById('firstname').value;
+        var s = document.getElementById('surname').value;
+        var q = document.getElementById('qtype').value;//Query Type
+        var e = document.getElementById('email').value;
+        var d = document.getElementById('date').value;
+        var dets = document.getElementById('details').value;//Query Details
+        // if 'x' or 'y' is true, first or surname contains a number 
+        var x = f.includes('0') || f.includes('1') || f.includes('2') || f.includes('3') || f.includes('4') || f.includes('5') || f.includes('6') || f.includes('7') || f.includes('8')|| f.includes('9');
+        var y = s.includes('0') || s.includes('1') || s.includes('2') || s.includes('3') || s.includes('4') || s.includes('5') || s.includes('6') || s.includes('7') || s.includes('8')|| s.includes('9');
+        // if 'z' is false, email is not valid
+        var z = e.length>=6 && e.includes('@') && e.includes('.');
+        
+
+// ---------------------------------IF Statement-----------------------------------------
+        if (x && y == true){ 
+            alert('Both names contain a number');
+        }
+        else if (x == true){
+            alert('Firstname contains a number');
+        }
+        else if (y == true){
+            alert('Surname contain a number');
+        }
+        else if (f.length == 0  || s.length == 0){
+            alert('Please enter a Name');
+        }
+        else if (q == 0){
+            alert('Please enter a query type');
+        }
+        else if (z == false){
+            alert('E-mail is invalid');
+        }
+        else if (d == false){
+            alert('Enter Todays date')
+        }
+        else if (dets.length == 0){
+            alert('Enter Query Details')
+        }
+        else{
+            alert('Submission Complete');
+        }
+    }
+</script>
+
+
