@@ -10,5 +10,5 @@ Leaving Certificate Computer Science Project of Darragh Grealish
 
 <br><br>The [Report](https://github.com/Darragh-Grealish/LCCS-Project/tree/main/Report) folder contains all the files involved in building my report website 
 
-<br>I also have the report in a PDF document [HERE]()
+<br>I also have the report in a PDF document [HERE](ttps://github.com/Darragh-Grealish/LCCS-Project/blob/main/LCCS%20Write%20Up%20PDF.pdf).
 
